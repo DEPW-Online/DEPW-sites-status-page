@@ -2,9 +2,29 @@
 <html>
 <head>
   <title>DIY Server Status</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    #status { font-size: 1.5em; margin: 20px; }
+    a { font-size: 1.2em; text-decoration: none; color: #007acc; }
+  </style>
 </head>
 <body>
   <h1>My DIY Home Server</h1>
-  <p>Status page coming soon...</p>
+  <div id="status">Checking server...</div>
+  <a id="serverLink" href="https://depw.sytes.net" target="_blank" style="display:none;">
+    Access Server
+  </a>
+
+  <script>
+    // Try to fetch your server homepage via No-IP DNS
+    fetch("https://depw.sytes.net", {mode: "no-cors"})
+      .then(() => {
+        document.getElementById("status").innerText = "✅ Server Online";
+        document.getElementById("serverLink").style.display = "inline";
+      })
+      .catch(() => {
+        document.getElementById("status").innerText = "❌ Server Offline";
+      });
+  </script>
 </body>
 </html>
