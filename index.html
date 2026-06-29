@@ -1,26 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>DIY Server Status</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-    #status { font-size: 1.5em; margin: 20px; }
-    a { font-size: 1.2em; text-decoration: none; color: #007acc; }
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 1.8em;
+      color: #007acc;
+    }
+    #status {
+      font-size: 1.3em;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+    a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #007acc;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    a:hover {
+      background: #005f99;
+    }
   </style>
 </head>
 <body>
-  <h1>My DIY Home Server</h1>
-  <div id="status">Checking server...</div>
-  <a id="serverLink" href="https://depw.sytes.net/depw_dms/" target="_blank" style="display:none;">
-    Access Server
-  </a>
+  <div class="card">
+    <h1>My DIY Home Server</h1>
+    <div id="status">Checking server...</div>
+    <a id="serverLink" href="https://depw.sytes.net" target="_blank" style="display:none;">
+      Access Server
+    </a>
+  </div>
 
   <script>
-    // Try to fetch your server homepage via No-IP DNS
+    // Attempt to reach your server via No-IP DNS
     fetch("https://depw.sytes.net", {mode: "no-cors"})
       .then(() => {
         document.getElementById("status").innerText = "✅ Server Online";
-        document.getElementById("serverLink").style.display = "inline";
+        document.getElementById("serverLink").style.display = "inline-block";
       })
       .catch(() => {
         document.getElementById("status").innerText = "❌ Server Offline";
